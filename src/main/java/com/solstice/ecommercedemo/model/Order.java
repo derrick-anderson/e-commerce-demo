@@ -18,13 +18,18 @@ public class Order {
     @JoinColumn(name = "addressId")
     private Address shippingAddress;
 
+    @ManyToOne
+    @JoinColumn(name = "accountId")
+    private Account account;
+
     public Order() {
     }
 
-    public Order(Date orderDate, Currency totalPrice, Address shippingAddress) {
+    public Order(Date orderDate, Currency totalPrice, Address shippingAddress, Account account) {
         this.orderDate = orderDate;
         this.totalPrice = totalPrice;
         this.shippingAddress = shippingAddress;
+        this.account = account;
     }
 
     public Long getOrderNumber() {
@@ -57,5 +62,13 @@ public class Order {
 
     public void setShippingAddress(Address shippingAddress) {
         this.shippingAddress = shippingAddress;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

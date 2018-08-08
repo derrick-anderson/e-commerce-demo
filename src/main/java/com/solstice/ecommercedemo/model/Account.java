@@ -1,6 +1,7 @@
 package com.solstice.ecommercedemo.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "accounts")
@@ -13,6 +14,8 @@ public class Account {
     private String lastName;
     private String email;
 
+    @OneToMany(mappedBy = "account")
+    private List<Order> orders;
 
     public Account() {
     }
