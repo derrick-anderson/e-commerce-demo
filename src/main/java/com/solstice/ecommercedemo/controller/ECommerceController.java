@@ -1,5 +1,6 @@
 package com.solstice.ecommercedemo.controller;
 
+import com.solstice.ecommercedemo.model.Account;
 import com.solstice.ecommercedemo.service.ECommerceService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,8 +16,8 @@ public class ECommerceController {
     }
 
     @GetMapping("/accounts/{ID}/orders")
-    public String getOrders(@PathVariable("ID") String accountId){
+    public Account getOrders(@PathVariable("ID") Integer accountId){
 
-        return "";
+        return service.getOrders(accountId);
     }
 }
