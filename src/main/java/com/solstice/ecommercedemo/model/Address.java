@@ -3,6 +3,7 @@ package com.solstice.ecommercedemo.model;
 import javax.persistence.*;
 
 @Entity
+@Embeddable
 @Table(name = "addresses")
 public class Address {
 

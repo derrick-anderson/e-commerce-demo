@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Embeddable
 @Table(name = "shipments")
 public class Shipment {
 
@@ -26,15 +27,28 @@ public class Shipment {
     @JoinColumn(name = "lineItemId")
     private List<LineItem> lineItems;
 
+    @ManyToOne
+    @JoinColumn(name ="orderNumber")
+    private Order order;
+
     public Shipment() {
     }
 
-    public Shipment(Account account, Address adddress, List<LineItem> lineItems, Date shippedDate, Date deliveredDate) {
+    public Shipment(Date shippedDate, Date deliveredDate, Account account, Address adddress, List<LineItem> lineItems, Order order) {
+        this.shippedDate = shippedDate;
+        this.deliveredDate = deliveredDate;
         this.account = account;
         this.adddress = adddress;
         this.lineItems = lineItems;
-        this.shippedDate = shippedDate;
-        this.deliveredDate = deliveredDate;
+        this.order = order;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public Long getShipmentId() {

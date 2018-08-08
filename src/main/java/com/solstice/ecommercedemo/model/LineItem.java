@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@Embeddable
 @Table(name = "lineItems")
 public class LineItem {
 
@@ -23,15 +24,29 @@ public class LineItem {
     @JoinColumn(name = "shipmentId")
     private Shipment shipment;
 
+    @ManyToOne
+    @JoinColumn(name = "orderNumber")
+    private Order order;
+
+
     public LineItem() {
     }
 
-    public LineItem(Long quantity, BigDecimal price, Product product, BigDecimal totalPrice, Shipment shipment) {
+    public LineItem(Long quantity, BigDecimal price, BigDecimal totalPrice, Product product, Shipment shipment, Order order) {
         this.quantity = quantity;
         this.price = price;
-        this.product = product;
         this.totalPrice = totalPrice;
+        this.product = product;
         this.shipment = shipment;
+        this.order = order;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public Long getLineItemId() {

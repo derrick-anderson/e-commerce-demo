@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@Embeddable
 @Table(name = "products")
 public class Product {
 

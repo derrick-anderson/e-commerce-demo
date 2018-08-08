@@ -3,8 +3,10 @@ package com.solstice.ecommercedemo.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Entity
+@Embeddable
 @Table(name = "orders")
 public class Order {
 
@@ -22,14 +24,22 @@ public class Order {
     @JoinColumn(name = "accountId")
     private Account account;
 
+    @OneToMany(mappedBy = "order")
+    private List<LineItem> lineItems;
+
+    @OneToMany(mappedBy = "order")
+    private List<Shipment> shipments;
+
     public Order() {
     }
 
-    public Order(Date orderDate, BigDecimal totalPrice, Address shippingAddress, Account account) {
+    public Order(Date orderDate, BigDecimal totalPrice, Address shippingAddress, Account account, List<LineItem> lineItems, List<Shipment> shipments) {
         this.orderDate = orderDate;
         this.totalPrice = totalPrice;
         this.shippingAddress = shippingAddress;
         this.account = account;
+        this.lineItems = lineItems;
+        this.shipments = shipments;
     }
 
     public Long getOrderNumber() {
@@ -70,5 +80,21 @@ public class Order {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public List<LineItem> getLineItems() {
+        return lineItems;
+    }
+
+    public void setLineItems(List<LineItem> lineItems) {
+        this.lineItems = lineItems;
+    }
+
+    public List<Shipment> getShipments() {
+        return shipments;
+    }
+
+    public void setShipments(List<Shipment> shipments) {
+        this.shipments = shipments;
     }
 }
