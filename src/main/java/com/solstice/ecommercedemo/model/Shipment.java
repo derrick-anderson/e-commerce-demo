@@ -26,8 +26,6 @@ public class Shipment {
     @JoinColumn(name = "lineItemId")
     private List<LineItem> lineItems;
 
-
-
     public Shipment() {
     }
 
