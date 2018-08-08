@@ -3,7 +3,6 @@ package com.solstice.ecommercedemo.model;
 import javax.persistence.*;
 
 @Entity
-@Embeddable
 @Table(name = "addresses")
 public class Address {
 
@@ -17,7 +16,7 @@ public class Address {
     private String country;
 
     @ManyToOne
-    @JoinColumn(name = "accountId")
+    @JoinColumn(name = "account")
     private Account account;
 
     public Address() {

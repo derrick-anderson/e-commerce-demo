@@ -15,9 +15,9 @@ public class ECommerceController {
         this.service = service;
     }
 
-    @GetMapping("/accounts/{ID}/orders")
-    public Account getOrders(@PathVariable("ID") Long accountId){
-
-        return service.getOrders(accountId);
-    }
+//    @GetMapping("/accounts/{ID}/orders")
+//    public Account getOrders(@PathVariable("ID") Long accountId){
+//
+//        return service.getOrders(accountId);
+//    }
 }

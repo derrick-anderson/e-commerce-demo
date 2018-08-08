@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Embeddable
 @Table(name = "orders")
 public class Order {
 
@@ -20,15 +19,15 @@ public class Order {
     @JoinColumn(name = "addressId")
     private Address shippingAddress;
 
-    @ManyToOne
-    @JoinColumn(name = "accountId")
-    private Account account;
-
     @OneToMany(mappedBy = "order")
     private List<LineItem> lineItems;
 
     @OneToMany(mappedBy = "order")
     private List<Shipment> shipments;
+
+    @ManyToOne
+    @JoinColumn(name = "accountId")
+    private Account account;
 
     public Order() {
     }
@@ -37,9 +36,9 @@ public class Order {
         this.orderDate = orderDate;
         this.totalPrice = totalPrice;
         this.shippingAddress = shippingAddress;
-        this.account = account;
         this.lineItems = lineItems;
         this.shipments = shipments;
+        this.account = account;
     }
 
     public Long getOrderNumber() {
@@ -74,14 +73,6 @@ public class Order {
         this.shippingAddress = shippingAddress;
     }
 
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
     public List<LineItem> getLineItems() {
         return lineItems;
     }
@@ -96,5 +87,13 @@ public class Order {
 
     public void setShipments(List<Shipment> shipments) {
         this.shipments = shipments;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

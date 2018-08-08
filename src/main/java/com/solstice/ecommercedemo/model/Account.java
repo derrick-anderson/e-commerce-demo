@@ -1,5 +1,7 @@
 package com.solstice.ecommercedemo.model;
 
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -20,10 +22,18 @@ public class Account {
     public Account() {
     }
 
-    public Account(String firstName, String lastName, String email) {
+//    public Account(String firstName, String lastName, String email) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = email;
+//    }
+
+
+    public Account(String firstName, String lastName, String email, List<Order> orders) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.orders = orders;
     }
 
     public Long getAccountId() {
