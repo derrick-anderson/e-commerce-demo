@@ -1,7 +1,6 @@
 package com.solstice.ecommercedemo.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Account {
@@ -17,16 +16,15 @@ public class Account {
     @Column(name = "last_name")
     private String lastName;
     private String email;
-    private List<Address> addresses;
+
 
     public Account() {
     }
 
-    public Account(String firstName, String lastName, String email, List<Address> addresses) {
+    public Account(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.addresses = addresses;
     }
 
     public Long getAccountId() {
@@ -61,11 +59,4 @@ public class Account {
         this.email = email;
     }
 
-    public List<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
-    }
 }

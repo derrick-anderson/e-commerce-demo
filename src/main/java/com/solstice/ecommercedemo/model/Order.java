@@ -1,9 +1,8 @@
 package com.solstice.ecommercedemo.model;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Currency;
 
 @Entity
 public class Order {
@@ -18,26 +17,20 @@ public class Order {
     private LocalDate orderDate;
 
     @Column(name = "total_price")
-    private BigDecimal totalPrice;
+    private Currency totalPrice;
 
     @OneToOne
     @JoinColumn(name = "address_id")
-    @Column(name = "shippingAddress")
+    @Column(name = "shipping_address")
     private Address shippingAddress;
-
-    @OneToMany
-    @JoinColumn(name = "order_id")
-    @Column(name = "line_items")
-    private List<LineItem> lineItems;
 
     public Order() {
     }
 
-    public Order(LocalDate orderDate, BigDecimal totalPrice, Address shippingAddress, List<LineItem> lineItems) {
+    public Order(LocalDate orderDate, Currency totalPrice, Address shippingAddress) {
         this.orderDate = orderDate;
         this.totalPrice = totalPrice;
         this.shippingAddress = shippingAddress;
-        this.lineItems = lineItems;
     }
 
     public Long getOrderNumber() {
@@ -56,11 +49,11 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public BigDecimal getTotalPrice() {
+    public Currency getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(BigDecimal totalPrice) {
+    public void setTotalPrice(Currency totalPrice) {
         this.totalPrice = totalPrice;
     }
 
@@ -70,13 +63,5 @@ public class Order {
 
     public void setShippingAddress(Address shippingAddress) {
         this.shippingAddress = shippingAddress;
-    }
-
-    public List<LineItem> getLineItems() {
-        return lineItems;
-    }
-
-    public void setLineItems(List<LineItem> lineItems) {
-        this.lineItems = lineItems;
     }
 }
