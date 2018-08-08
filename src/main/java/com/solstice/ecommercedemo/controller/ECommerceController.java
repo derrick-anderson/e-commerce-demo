@@ -16,7 +16,7 @@ public class ECommerceController {
     }
 
     @GetMapping("/accounts/{ID}/orders")
-    public Account getOrders(@PathVariable("ID") Integer accountId){
+    public Account getOrders(@PathVariable("ID") Long accountId){
 
         return service.getOrders(accountId);
     }

@@ -2,7 +2,6 @@ package com.solstice.ecommercedemo.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Currency;
 
 @Entity
 @Table(name = "lineItems")
@@ -14,7 +13,7 @@ public class LineItem {
 
     private Long quantity;
     private BigDecimal price;
-    private Currency totalPrice;
+    private BigDecimal totalPrice;
 
     @OneToOne
     @JoinColumn(name = "productId")
@@ -27,7 +26,7 @@ public class LineItem {
     public LineItem() {
     }
 
-    public LineItem(Long quantity, BigDecimal price, Product product, Currency totalPrice, Shipment shipment) {
+    public LineItem(Long quantity, BigDecimal price, Product product, BigDecimal totalPrice, Shipment shipment) {
         this.quantity = quantity;
         this.price = price;
         this.product = product;
@@ -67,11 +66,11 @@ public class LineItem {
         this.product = product;
     }
 
-    public Currency getTotalPrice() {
+    public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(Currency totalPrice) {
+    public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
 

@@ -1,7 +1,7 @@
 package com.solstice.ecommercedemo.model;
 
 import javax.persistence.*;
-import java.util.Currency;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -12,7 +12,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderNumber;
     private Date orderDate;
-    private Currency totalPrice;
+    private BigDecimal totalPrice;
 
     @OneToOne
     @JoinColumn(name = "addressId")
@@ -25,7 +25,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(Date orderDate, Currency totalPrice, Address shippingAddress, Account account) {
+    public Order(Date orderDate, BigDecimal totalPrice, Address shippingAddress, Account account) {
         this.orderDate = orderDate;
         this.totalPrice = totalPrice;
         this.shippingAddress = shippingAddress;
@@ -48,11 +48,11 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public Currency getTotalPrice() {
+    public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(Currency totalPrice) {
+    public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
 
