@@ -24,13 +24,13 @@ public class LineItem {
 
     @OneToOne
     @JoinColumn(name = "shipment_id")
-    @Column(name = "shipment")
-    private Long shipment;
+    @Column(name = "shipment_id")
+    private Shipment shipment;
 
     public LineItem() {
     }
 
-    public LineItem(Long quantity, BigDecimal price, Long product, Currency totalPrice, Long shipment) {
+    public LineItem(Long quantity, BigDecimal price, Long product, Currency totalPrice, Shipment shipment) {
         this.quantity = quantity;
         this.price = price;
         this.product = product;
@@ -78,11 +78,11 @@ public class LineItem {
         this.totalPrice = totalPrice;
     }
 
-    public Long getShipment() {
+    public Shipment getShipment() {
         return shipment;
     }
 
-    public void setShipment(Long shipment) {
+    public void setShipment(Shipment shipment) {
         this.shipment = shipment;
     }
 }
