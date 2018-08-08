@@ -1,44 +1,37 @@
 package com.solstice.ecommercedemo.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "shipments")
 public class Shipment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "shipment_id")
     private Long shipmentId;
+    private Date shippedDate;
+    private Date deliveredDate;
 
-    @ManyToOne
-    @JoinColumn(name = "account_id")
-    @Column(name = "account_id")
+    @OneToOne
+    @JoinColumn(name = "accountId")
     private Account account;
 
-    @ManyToOne
-    @JoinColumn(name = "address_id")
-    @Column(name = "address_id")
+    @OneToOne
+    @JoinColumn(name = "addressId")
     private Address adddress;
 
     @OneToMany
-    @JoinColumn(name = "line_item_id")
-    @Column(name = "line_items")
+    @JoinColumn(name = "lineItemId")
     private List<LineItem> lineItems;
 
-    @Column(name = "date_shipped")
-    private LocalDate shippedDate;
-
-    @Column(name = "date_delivered")
-    private LocalDate deliveredDate;
 
 
-    public Shipment(Account account) {
-        this.account = account;
+    public Shipment() {
     }
 
-    public Shipment(Account account, Address adddress, List<LineItem> lineItems, LocalDate shippedDate, LocalDate deliveredDate) {
+    public Shipment(Account account, Address adddress, List<LineItem> lineItems, Date shippedDate, Date deliveredDate) {
         this.account = account;
         this.adddress = adddress;
         this.lineItems = lineItems;
@@ -78,19 +71,19 @@ public class Shipment {
         this.lineItems = lineItems;
     }
 
-    public LocalDate getShippedDate() {
+    public Date getShippedDate() {
         return shippedDate;
     }
 
-    public void setShippedDate(LocalDate shippedDate) {
+    public void setShippedDate(Date shippedDate) {
         this.shippedDate = shippedDate;
     }
 
-    public LocalDate getDeliveredDate() {
+    public Date getDeliveredDate() {
         return deliveredDate;
     }
 
-    public void setDeliveredDate(LocalDate deliveredDate) {
+    public void setDeliveredDate(Date deliveredDate) {
         this.deliveredDate = deliveredDate;
     }
 }

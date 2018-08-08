@@ -5,32 +5,29 @@ import java.math.BigDecimal;
 import java.util.Currency;
 
 @Entity
+@Table(name = "lineItems")
 public class LineItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "line_item_id")
     private Long lineItemId;
 
     private Long quantity;
     private BigDecimal price;
-
-    @Column(name = "total_price")
     private Currency totalPrice;
 
     @OneToOne
-    @JoinColumn(name = "product_id")
-    private Long product;
+    @JoinColumn(name = "productId")
+    private Product product;
 
-    @OneToOne
-    @JoinColumn(name = "shipment_id")
-    @Column(name = "shipment_id")
+    @ManyToOne
+    @JoinColumn(name = "shipmentId")
     private Shipment shipment;
 
     public LineItem() {
     }
 
-    public LineItem(Long quantity, BigDecimal price, Long product, Currency totalPrice, Shipment shipment) {
+    public LineItem(Long quantity, BigDecimal price, Product product, Currency totalPrice, Shipment shipment) {
         this.quantity = quantity;
         this.price = price;
         this.product = product;
@@ -62,11 +59,11 @@ public class LineItem {
         this.price = price;
     }
 
-    public Long getProduct() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(Long product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 

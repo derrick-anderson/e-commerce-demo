@@ -3,23 +3,20 @@ package com.solstice.ecommercedemo.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "addresses")
 public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "address_id")
     private Long addressId;
-
     private String street;
     private String unit;
     private String city;
-
-    @Column(name = "state_or_province")
     private String stateOrProvince;
     private String country;
 
     @ManyToOne
-    @JoinColumn(name = "account_id")
+    @JoinColumn(name = "accountId")
     private Account account;
 
     public Address() {
