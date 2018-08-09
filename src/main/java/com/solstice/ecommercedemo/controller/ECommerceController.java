@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController("/api/")
 public class ECommerceController {
 
     private ECommerceService service;
@@ -15,9 +15,9 @@ public class ECommerceController {
         this.service = service;
     }
 
-//    @GetMapping("/accounts/{ID}/orders")
-//    public Account getOrders(@PathVariable("ID") Long accountId){
-//
-//        return service.getOrders(accountId);
-//    }
+    @GetMapping("/accounts/{ID}/orders")
+    public Account getOrders(@PathVariable("ID") Long accountId){
+
+        return service.getOrders(accountId);
+    }
 }

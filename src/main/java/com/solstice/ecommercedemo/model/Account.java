@@ -1,7 +1,5 @@
 package com.solstice.ecommercedemo.model;
 
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,21 +17,35 @@ public class Account {
     @OneToMany(mappedBy = "account")
     private List<Order> orders;
 
+    @OneToMany(mappedBy = "account")
+    private List<Address> addresses;
+
+
     public Account() {
     }
 
-//    public Account(String firstName, String lastName, String email) {
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.email = email;
-//    }
-
-
-    public Account(String firstName, String lastName, String email, List<Order> orders) {
+    public Account(String firstName, String lastName, String email, List<Order> orders, List<Address> addresses) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.orders = orders;
+        this.addresses = addresses;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
     }
 
     public Long getAccountId() {
