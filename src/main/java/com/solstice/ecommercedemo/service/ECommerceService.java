@@ -3,7 +3,10 @@ package com.solstice.ecommercedemo.service;
 import com.solstice.ecommercedemo.data.AccountRepository;
 import com.solstice.ecommercedemo.data.OrderRepository;
 import com.solstice.ecommercedemo.model.Account;
+import com.solstice.ecommercedemo.model.Order;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ECommerceService {
@@ -16,12 +19,14 @@ public class ECommerceService {
         this.orderRepository = orderRepository;
     }
 
-    public Account getOrders(Long accountId){
+    public Account getAccountSummary(Long accountId){
 
-        Account summary = accountRepository.findByAccountId(accountId);
-        summary.getOrders();
+        return accountRepository.findByAccountId(accountId);
 
-        System.out.printf("summary");
-        return summary;
     }
+
+    public List<Order> getOrders(Long accountId){
+        return orderRepository.findAllByAccount_AccountIdOrderByOrderDateAsc(accountId);
+    }
+
 }
