@@ -14,7 +14,7 @@ public class Shipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long shipmentId;
-    private Date shippedDate;
+    private Date shippedDate = new Date();
     private Date deliveredDate;
 
     @OneToOne
