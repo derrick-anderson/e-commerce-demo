@@ -17,6 +17,11 @@ public class ECommerceService {
     }
 
     public Account getOrders(Long accountId){
-        return null;
+
+        Account summary = accountRepository.findByAccountId(accountId);
+        summary.getOrders();
+
+        System.out.printf("summary");
+        return summary;
     }
 }

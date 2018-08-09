@@ -1,5 +1,8 @@
 package com.solstice.ecommercedemo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -12,17 +15,19 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderNumber;
-    private Date orderDate;
+    private Date orderDate = new Date();
     private BigDecimal totalPrice;
 
     @OneToOne
     @JoinColumn(name = "addressId")
     private Address shippingAddress;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany
+    @JoinColumn(name = "orderNumber")
     private List<LineItem> lineItems;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany
+    @JoinColumn(name = "orderNumber")
     private List<Shipment> shipments;
 
     @ManyToOne
@@ -89,9 +94,9 @@ public class Order {
         this.shipments = shipments;
     }
 
-    public Account getAccount() {
-        return account;
-    }
+//    public Account getAccount() {
+//        return account;
+//    }
 
     public void setAccount(Account account) {
         this.account = account;

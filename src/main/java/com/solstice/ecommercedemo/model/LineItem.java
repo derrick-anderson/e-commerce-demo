@@ -1,5 +1,10 @@
 package com.solstice.ecommercedemo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -25,27 +30,27 @@ public class LineItem {
 
     @ManyToOne
     @JoinColumn(name = "orderNumber")
-    private Order order;
+    private Order orderNumber;
 
 
     public LineItem() {
     }
 
-    public LineItem(Long quantity, BigDecimal price, BigDecimal totalPrice, Product product, Shipment shipment, Order order) {
+    public LineItem(Long quantity, BigDecimal price, BigDecimal totalPrice, Product product, Shipment shipment, Order orderNumber) {
         this.quantity = quantity;
         this.price = price;
         this.totalPrice = totalPrice;
         this.product = product;
         this.shipment = shipment;
-        this.order = order;
+        this.orderNumber = orderNumber;
     }
 
-    public Order getOrder() {
-        return order;
-    }
+//    public Order getOrderNumber() {
+//        return orderNumber;
+//    }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrderNumber(Order orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public Long getLineItemId() {
@@ -69,6 +74,7 @@ public class LineItem {
     }
 
     public void setPrice(BigDecimal price) {
+
         this.price = price;
     }
 
@@ -81,7 +87,7 @@ public class LineItem {
     }
 
     public BigDecimal getTotalPrice() {
-        return totalPrice;
+        return this.price.multiply(BigDecimal.valueOf(this.quantity));
     }
 
     public void setTotalPrice(BigDecimal totalPrice) {

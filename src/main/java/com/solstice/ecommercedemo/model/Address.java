@@ -1,5 +1,7 @@
 package com.solstice.ecommercedemo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,6 +19,7 @@ public class Address {
 
     @ManyToOne
     @JoinColumn(name = "account")
+    @JsonIgnore
     private Account account;
 
     public Address() {

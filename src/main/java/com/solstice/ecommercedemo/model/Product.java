@@ -24,7 +24,7 @@ public class Product {
         this.description = description;
         this.price = price;
         this.imageSrc = imageSrc;
-    }
+    }{}
 
     public Long getProductId() {
         return productId;

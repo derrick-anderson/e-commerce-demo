@@ -1,5 +1,8 @@
 package com.solstice.ecommercedemo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -22,10 +25,6 @@ public class Shipment {
     @JoinColumn(name = "addressId")
     private Address adddress;
 
-    @OneToMany
-    @JoinColumn(name = "lineItemId")
-    private List<LineItem> lineItems;
-
     @ManyToOne
     @JoinColumn(name ="orderNumber")
     private Order order;
@@ -33,18 +32,17 @@ public class Shipment {
     public Shipment() {
     }
 
-    public Shipment(Date shippedDate, Date deliveredDate, Account account, Address adddress, List<LineItem> lineItems, Order order) {
+    public Shipment(Date shippedDate, Date deliveredDate, Account account, Address adddress, Order order) {
         this.shippedDate = shippedDate;
         this.deliveredDate = deliveredDate;
         this.account = account;
         this.adddress = adddress;
-        this.lineItems = lineItems;
         this.order = order;
     }
 
-    public Order getOrder() {
-        return order;
-    }
+//    public Order getOrder() {
+//        return order;
+//    }
 
     public void setOrder(Order order) {
         this.order = order;
@@ -58,9 +56,9 @@ public class Shipment {
         this.shipmentId = shipmentId;
     }
 
-    public Account getAccount() {
-        return account;
-    }
+//    public Account getAccount() {
+//        return account;
+//    }
 
     public void setAccount(Account account) {
         this.account = account;
@@ -72,14 +70,6 @@ public class Shipment {
 
     public void setAdddress(Address adddress) {
         this.adddress = adddress;
-    }
-
-    public List<LineItem> getLineItems() {
-        return lineItems;
-    }
-
-    public void setLineItems(List<LineItem> lineItems) {
-        this.lineItems = lineItems;
     }
 
     public Date getShippedDate() {
