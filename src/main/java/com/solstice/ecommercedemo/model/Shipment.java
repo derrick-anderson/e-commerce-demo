@@ -1,8 +1,5 @@
 package com.solstice.ecommercedemo.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +20,7 @@ public class Shipment {
 
     @OneToOne
     @JoinColumn(name = "addressId")
-    private Address adddress;
+    private Address address;
 
     @ManyToOne
     @JoinColumn(name ="orderNumber")
@@ -36,11 +33,11 @@ public class Shipment {
     public Shipment() {
     }
 
-    public Shipment(Date shippedDate, Date deliveredDate, Account account, Address adddress, Order order) {
+    public Shipment(Date shippedDate, Date deliveredDate, Account account, Address address, Order order) {
         this.shippedDate = shippedDate;
         this.deliveredDate = deliveredDate;
         this.account = account;
-        this.adddress = adddress;
+        this.address = address;
         this.order = order;
     }
 
@@ -68,12 +65,12 @@ public class Shipment {
         this.account = account;
     }
 
-    public Address getAdddress() {
-        return adddress;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAdddress(Address adddress) {
-        this.adddress = adddress;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public Date getShippedDate() {
