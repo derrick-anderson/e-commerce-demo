@@ -1,9 +1,6 @@
 package com.solstice.ecommercedemo.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonView;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -27,7 +24,8 @@ public class LineItem {
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "shipmentId")
+    @JoinColumn(name = "shipment")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Shipment shipment;
 
     @ManyToOne

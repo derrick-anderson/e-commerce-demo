@@ -1,5 +1,7 @@
 package com.solstice.ecommercedemo.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +29,8 @@ public class Shipment {
     private Order order;
 
     @OneToMany
-    @JoinColumn(name = "lineItemId")
+    @JoinColumn(name = "shipment")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<LineItem> lineItems;
 
     public Shipment() {
@@ -87,5 +90,13 @@ public class Shipment {
 
     public void setDeliveredDate(Date deliveredDate) {
         this.deliveredDate = deliveredDate;
+    }
+
+//    public List<LineItem> getLineItems() {
+//        return lineItems;
+//    }
+
+    public void setLineItems(List<LineItem> lineItems) {
+        this.lineItems = lineItems;
     }
 }
