@@ -19,7 +19,6 @@ public class Address {
 
     @ManyToOne
     @JoinColumn(name = "account")
-    @JsonIgnore
     private Account account;
 
     public Address() {
@@ -34,9 +33,9 @@ public class Address {
         this.account = account;
     }
 
-    public Long getAddressId() {
-        return addressId;
-    }
+//    public Long getAddressId() {
+//        return addressId;
+//    }
 
     public void setAddressId(Long addressId) {
         this.addressId = addressId;

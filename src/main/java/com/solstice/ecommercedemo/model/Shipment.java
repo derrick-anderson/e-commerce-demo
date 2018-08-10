@@ -29,6 +29,10 @@ public class Shipment {
     @JoinColumn(name ="orderNumber")
     private Order order;
 
+    @OneToMany
+    @JoinColumn(name = "lineItemId")
+    private List<LineItem> lineItems;
+
     public Shipment() {
     }
 

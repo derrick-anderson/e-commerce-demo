@@ -18,6 +18,8 @@ public class LineItem {
 
     private Long quantity;
     private BigDecimal price;
+
+    @Transient
     private BigDecimal totalPrice;
 
     @OneToOne
@@ -101,4 +103,5 @@ public class LineItem {
     public void setShipment(Shipment shipment) {
         this.shipment = shipment;
     }
+
 }
