@@ -2,6 +2,7 @@ package com.solstice.ecommercedemo.controller;
 
 import com.solstice.ecommercedemo.model.Account;
 import com.solstice.ecommercedemo.model.Order;
+import com.solstice.ecommercedemo.model.Shipment;
 import com.solstice.ecommercedemo.service.ECommerceService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,4 +29,10 @@ public class ECommerceController {
     public List<Order> getOrders(@PathVariable("ID") Long accountId){
         return service.getOrders(accountId);
     }
+
+    @GetMapping("/accounts/{ID}/shipments")
+    public List<Shipment> getShipments(@PathVariable("ID") Long accountId){
+        return service.getShipments(accountId);
+    }
+
 }
