@@ -32,6 +32,7 @@ public class LineItem {
 
     @ManyToOne
     @JoinColumn(name = "orderNumber")
+    @JsonIgnoreProperties(value = {"shipments", "account", "lineItems"})
     private Order orderNumber;
 
 
@@ -47,9 +48,9 @@ public class LineItem {
         this.orderNumber = orderNumber;
     }
 
-//    public Order getOrderNumber() {
-//        return orderNumber;
-//    }
+    public Order getOrderNumber() {
+        return orderNumber;
+    }
 
     public void setOrderNumber(Order orderNumber) {
         this.orderNumber = orderNumber;
