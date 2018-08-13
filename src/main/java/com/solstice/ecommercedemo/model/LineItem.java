@@ -1,5 +1,6 @@
 package com.solstice.ecommercedemo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -25,6 +26,7 @@ public class LineItem {
 
     @ManyToOne
     @JoinColumn(name = "shipment")
+    @JsonIgnoreProperties(value = "lineItems")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Shipment shipment;
 

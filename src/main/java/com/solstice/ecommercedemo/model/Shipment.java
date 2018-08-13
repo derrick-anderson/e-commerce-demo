@@ -1,5 +1,6 @@
 package com.solstice.ecommercedemo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -30,6 +31,7 @@ public class Shipment {
 
     @OneToMany
     @JoinColumn(name = "shipment")
+    @JsonIgnoreProperties(value = "shipment")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<LineItem> lineItems;
 
@@ -92,9 +94,9 @@ public class Shipment {
         this.deliveredDate = deliveredDate;
     }
 
-//    public List<LineItem> getLineItems() {
-//        return lineItems;
-//    }
+    public List<LineItem> getLineItems() {
+        return lineItems;
+    }
 
     public void setLineItems(List<LineItem> lineItems) {
         this.lineItems = lineItems;
