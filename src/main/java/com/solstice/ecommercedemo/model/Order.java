@@ -1,6 +1,7 @@
 package com.solstice.ecommercedemo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class Order {
 
     @OneToOne
     @JoinColumn(name = "addressId")
+    @JsonIgnoreProperties(value = "account")
     private Address shippingAddress;
 
     @OneToMany
@@ -32,6 +34,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "accountId")
+    @JsonIgnoreProperties(value = "orders")
     private Account account;
 
     public Order() {
@@ -94,9 +97,9 @@ public class Order {
         this.shipments = shipments;
     }
 
-//    public Account getAccount() {
-//        return account;
-//    }
+    public Account getAccount() {
+        return account;
+    }
 
     public void setAccount(Account account) {
         this.account = account;

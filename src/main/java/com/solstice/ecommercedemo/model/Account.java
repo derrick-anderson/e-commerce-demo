@@ -1,5 +1,7 @@
 package com.solstice.ecommercedemo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,6 +20,7 @@ public class Account {
     private List<Order> orders;
 
     @OneToMany(mappedBy = "account")
+    @JsonIgnoreProperties(value = "account")
     private List<Address> addresses;
 
 

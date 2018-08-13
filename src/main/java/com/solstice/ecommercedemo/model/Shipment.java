@@ -19,14 +19,17 @@ public class Shipment {
 
     @OneToOne
     @JoinColumn(name = "accountId")
+    @JsonIgnoreProperties(value = "orders")
     private Account account;
 
     @OneToOne
     @JoinColumn(name = "addressId")
+    @JsonIgnoreProperties(value = "account")
     private Address address;
 
     @ManyToOne
     @JoinColumn(name ="orderNumber")
+    @JsonIgnoreProperties(value = {"shipments", "lineItems"})
     private Order order;
 
     @OneToMany
@@ -62,9 +65,9 @@ public class Shipment {
         this.shipmentId = shipmentId;
     }
 
-//    public Account getAccount() {
-//        return account;
-//    }
+    public Account getAccount() {
+        return account;
+    }
 
     public void setAccount(Account account) {
         this.account = account;

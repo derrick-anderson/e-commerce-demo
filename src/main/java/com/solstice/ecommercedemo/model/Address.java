@@ -1,6 +1,6 @@
 package com.solstice.ecommercedemo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
@@ -19,6 +19,7 @@ public class Address {
 
     @ManyToOne
     @JoinColumn(name = "account")
+    @JsonIgnoreProperties(value = "addresses")
     private Account account;
 
     public Address() {
@@ -33,9 +34,9 @@ public class Address {
         this.account = account;
     }
 
-//    public Long getAddressId() {
-//        return addressId;
-//    }
+    public Long getAddressId() {
+        return addressId;
+    }
 
     public void setAddressId(Long addressId) {
         this.addressId = addressId;
@@ -81,9 +82,9 @@ public class Address {
         this.country = country;
     }
 
-//    public Account getAccount() {
-//        return account;
-//    }
+    public Account getAccount() {
+        return account;
+    }
 
     public void setAccount(Account account) {
         this.account = account;
